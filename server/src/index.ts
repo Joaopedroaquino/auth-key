@@ -1,10 +1,16 @@
 import express from 'express';
-import path from 'path';
+//import path from 'path';
+import keycloak from './keycloak';
 
 
 
 
 var app = express();
+app.use(keycloak.middleware({
+  logout: '/logout',
+  admin: '/'
+
+}))
 
 // view engine setup
 
@@ -12,7 +18,7 @@ var app = express();
  *app.set('view engine', 'pug'); 
  */
 
-app.get('/', function(req, res, next) {
+app.get('/',keycloak.protect(), function(req, res, next) {
   res.json('Hello World');
 });
 

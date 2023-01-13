@@ -1,4 +1,7 @@
-import KeycloakConnect from "keycloak-connect";
+import KeycloakConnect from 'keycloak-connect';
+import session from 'express-session'
+
+export const memoryStore = new session.MemoryStore()
 
 const config: KeycloakConnect.KeycloakConfig = {
     realm: 'my-realm',
@@ -8,4 +11,6 @@ const config: KeycloakConnect.KeycloakConfig = {
     "ssl-required": "external"
 }
 
-const keyclaok = new KeycloakConnect({}, config)
+const keycloak = new KeycloakConnect({store: memoryStore}, config)
+
+export default keycloak;
