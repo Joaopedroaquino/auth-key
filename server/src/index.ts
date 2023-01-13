@@ -1,6 +1,8 @@
 import express from 'express';
 //import path from 'path';
-import keycloak from './keycloak';
+import keycloak, { memoryStore } from './keycloak';
+import session from 'express-session'
+
 
 
 
@@ -9,6 +11,18 @@ var app = express();
 app.use(keycloak.middleware({
   logout: '/logout',
   admin: '/'
+
+}));
+
+app.use(session({
+  secret:'1234567890',
+  resave: false,
+  saveUninitialized: true,
+  store: memoryStore,
+  cookie: {
+    maxAge: 1000 * 60 * 10
+  }
+
 
 }))
 
