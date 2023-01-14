@@ -14,7 +14,8 @@ app.use(keycloak.middleware({
 
 }));
 
-app.use(session({
+app.use(
+  session({
   secret:'1234567890',
   resave: false,
   saveUninitialized: true,

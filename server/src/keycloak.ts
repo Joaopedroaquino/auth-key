@@ -1,7 +1,7 @@
 import KeycloakConnect from 'keycloak-connect';
 import session from 'express-session'
 
-export const memoryStore = new session.MemoryStore()
+export const memoryStore = new session.MemoryStore();
 
 const config: KeycloakConnect.KeycloakConfig = {
     realm: 'my-realm',
